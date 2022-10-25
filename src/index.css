@@ -1,13 +1,132 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.link {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 24px;
+  cursor: pointer;
+  transition: transform 400ms;
+}
+.link:hover {
+  transform: scale(1.1);
+  filter: brightness(0.5);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.button {
+  margin: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+  color: #ffffff;
+  background-color: #020203;
+  border-radius: 7px;
+  font-size: 24px;
+  transition: transform 400ms;
+}
+.button:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 425px) {
+  .link {
+    font-size: 17px;
+  }
+}
+.header {
+  position: absolute;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  height: 9.79vh;
+  background-color: #020203;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+.header_container {
+  max-width: 1440px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: auto;
+}
+.header_container_links {
+  padding-left: 0;
+  display: flex;
+  justify-content: space-around;
+  flex: 1;
+}
+
+.active {
+  color: #FF0101;
+}
+
+.logoNavBar {
+  display: block;
+  margin-left: 29px;
+}
+
+@media (max-width: 768px) {
+  .header {
+    height: 7.53vh;
+  }
+  .logoNavBar {
+    height: 50px;
+    width: auto;
+  }
+}
+@media (max-width: 625px) {
+  .logoNavBar {
+    display: none;
+  }
+}
+.home {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.home_title {
+  color: #FF0101;
+}
+
+.notFound {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 12px;
+  text-align: center;
+}
+.notFound_title {
+  font-size: 65px;
+  color: #FF0101;
+}
+.notFound_text {
+  color: #20253A;
+}
+.notFound_link {
+  color: #74798C;
+}
+
+html {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1;
 }

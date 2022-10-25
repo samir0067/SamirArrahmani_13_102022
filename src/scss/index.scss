@@ -1,0 +1,31 @@
+// Utiles
+@use "utils/variables";
+
+// Components
+@use "components/button";
+
+// Layout
+@use "layout/navBar";
+
+// Pages
+@use "pages/home";
+@use "pages/notFound";
+
+html {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1;
+}
