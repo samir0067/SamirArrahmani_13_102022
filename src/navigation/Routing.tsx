@@ -6,6 +6,7 @@ import NavBar from "layout/NavBar";
 import PrivateRoute from "navigation/PrivateRoute";
 import Profile from "pages/Profile";
 import SignIn from "pages/SignIn";
+import Footer from "layout/Footer";
 
 /**
  * Navigation page with layout element
@@ -24,6 +25,7 @@ const Routing = () => {
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Footer />
     </main>
   );
 };
