@@ -1,49 +1,61 @@
-import React, { FC, useContext } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import Button from "components/Button";
-import { UserContext } from "utils/context/userContext";
+import React, { FC } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { selectAuth, setAuth } from "store/reducers/authReducer";
+import argentBankLogo from "../assets/argentBankLogo.png";
+import { selectUser } from "store/reducers/userReducer";
+import { FaUserCircle } from "react-icons/fa";
+import { RiLogoutBoxRLine } from "react-icons/ri";
 
-/**
- * Page navigation system, with removal of the global state when returning to the home page
- */
 const NavBar: FC = () => {
-  const location = useLocation();
   const navigate = useNavigate();
-  const { user, setUser } = useContext(UserContext);
+  const dispatch = useDispatch();
+  const { isAuth } = useSelector(selectAuth);
+  const user = useSelector(selectUser);
 
-  console.log("setUser =>", setUser);
+  const handleSignOut = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    dispatch(setAuth({ isAuth: false, token: "" }));
+    localStorage.removeItem("token");
+    navigate("/");
+  };
+
+  const content = {
+    login: "Sign In",
+    signOut: "Sign Out",
+  };
 
   return (
-    <header className="header">
-      <div className="header_container">
-        {/*<img className="logoNavBar" src={Logo} alt="logo" />*/}
-        <div className="header_container_links">
-          <Button
-            isLink
-            title="Accueil"
-            className={location.pathname === "/" ? "active" : ""}
-            onClick={() => undefined}
+    <header>
+      <nav className="nav">
+        <NavLink to={"/"}>
+          <img
+            className="nav_logo_img"
+            src={argentBankLogo}
+            alt="Argent Bank Logo"
           />
-          <Button
-            isLink
-            title="Profil"
-            className={location.pathname === `/user/${user}` ? "active" : ""}
-            onClick={() => navigate(`/user/${user}`)}
-          />
-          <Button
-            isLink
-            title="Réglage"
-            className={location.pathname === "/setting" ? "active" : ""}
-            onClick={() => navigate("/setting")}
-          />
-          <Button
-            isLink
-            title="Communauté"
-            className={location.pathname === "/community" ? "active" : ""}
-            onClick={() => navigate("/community")}
-          />
-        </div>
-      </div>
+          <h1 className="sr-only">Argent Bank</h1>
+        </NavLink>
+        {isAuth ? (
+          <div className="nav_item">
+            <NavLink to={"profile"}>
+              <FaUserCircle />
+              {user.firstName}
+            </NavLink>
+            <NavLink onClick={(e) => handleSignOut(e)} to={"/"}>
+              <RiLogoutBoxRLine />
+              {content.signOut}
+            </NavLink>
+          </div>
+        ) : (
+          <div className="nav_item">
+            <NavLink to={"sign-in"}>
+              <FaUserCircle />
+              {content.login}
+            </NavLink>
+          </div>
+        )}
+      </nav>
     </header>
   );
 };

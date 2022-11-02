@@ -11,12 +11,12 @@
   text-align: center;
   &_title {
     font-size: 65px;
-    color: variables.$redText;
+    color: variables.$black;
   }
   &_text {
-    color: variables.$blackText;
+    color: variables.$black;
   }
   &_link {
-    color: variables.$greyText;
+    color: variables.$black;
   }
 }

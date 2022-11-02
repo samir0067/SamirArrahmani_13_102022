@@ -2,7 +2,6 @@ import React, { FC } from "react";
 
 const Home: FC = () => {
   // const navigate = useNavigate();
-  // const { user, setUser } = useContext(UserContext);
 
   // useEffect(() => {
   //   if (user?.data.id) {
@@ -11,9 +10,7 @@ const Home: FC = () => {
   // }, [user]);
 
   const content = {
-    title: "SportSee",
-    karlButton: "Karl Dovineau",
-    ceciliaButton: "Cecilia Ratorez",
+    title: "ArgentBank",
   };
 
   return (
