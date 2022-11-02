@@ -1,0 +1,44 @@
+// Utiles
+@use "utils/variables";
+
+// Components
+@use "components/button";
+
+// Layout
+@use "layout/navBar";
+
+// Pages
+@use "pages/home";
+@use "pages/notFound";
+
+html {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1;
+}
+
+.sr-only {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px); /* 1 */
+  clip-path: inset(50%); /* 2 */
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap; /* 3 */
+}
