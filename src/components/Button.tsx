@@ -6,35 +6,19 @@ import React, { FC } from "react";
 type ButtonProps = {
   title: string;
   onClick: (e: React.MouseEvent) => Promise<void>;
-  className?: string;
-  isLink?: boolean;
 };
 
 /**
- * Generic button used as a navigation link or button in the application
+ * Generic button used for form validation
  * @param { string } title button title
  * @param { function } onClick to call a function
- * @param { string } className customizable style if necessary
- * @param { boolean } isLink if true style link use
  */
-const Button: FC<ButtonProps> = ({
-  title,
-  onClick,
-  className,
-  isLink,
-}: ButtonProps) => {
+const Button: FC<ButtonProps> = ({ title, onClick }: ButtonProps) => {
   return (
-    <button
-      onClick={onClick}
-      className={isLink ? `link ${className}` : "button"}
-    >
+    <button onClick={onClick} className="button">
       {title}
     </button>
   );
-};
-
-Button.defaultProps = {
-  isLink: false,
 };
 
 export default Button;

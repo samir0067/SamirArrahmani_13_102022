@@ -4,10 +4,10 @@ import Features from "components/Features";
 
 const Home: FC = () => {
   return (
-    <main>
+    <div>
       <Hero />
       <Features />
-    </main>
+    </div>
   );
 };
 

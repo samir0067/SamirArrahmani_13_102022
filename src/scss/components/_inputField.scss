@@ -1,0 +1,35 @@
+@use "../utils/variables";
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 1rem;
+  & label {
+    font-weight: bold;
+  }
+  & input {
+    padding: 5px;
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 920px) {
+  .hero {
+    height: 400px;
+    background-position: 33%;
+    &_content {
+      position: absolute;
+      top: 50px;
+      right: 50px;
+      width: 300px;
+      margin: 2rem;
+      &_subtitle {
+        font-size: 1.5rem;
+      }
+      &_text {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
