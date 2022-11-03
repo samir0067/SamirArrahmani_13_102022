@@ -5,7 +5,7 @@ import React, { FC } from "react";
  */
 type ButtonProps = {
   title: string;
-  onClick: () => void;
+  onClick: (e: React.MouseEvent) => Promise<void>;
   className?: string;
   isLink?: boolean;
 };
@@ -17,9 +17,17 @@ type ButtonProps = {
  * @param { string } className customizable style if necessary
  * @param { boolean } isLink if true style link use
  */
-const Button: FC<ButtonProps> = ({ title, onClick, className, isLink }: ButtonProps) => {
+const Button: FC<ButtonProps> = ({
+  title,
+  onClick,
+  className,
+  isLink,
+}: ButtonProps) => {
   return (
-    <button onClick={onClick} className={isLink ? `link ${className}` : "button"}>
+    <button
+      onClick={onClick}
+      className={isLink ? `link ${className}` : "button"}
+    >
       {title}
     </button>
   );
