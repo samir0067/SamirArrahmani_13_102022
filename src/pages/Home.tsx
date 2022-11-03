@@ -1,25 +1,13 @@
 import React, { FC } from "react";
+import Hero from "components/Hero";
+import Features from "components/Features";
 
 const Home: FC = () => {
-  // const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   if (user?.data.id) {
-  //     navigate(`/user/${user.data.id}`);
-  //   }
-  // }, [user]);
-
-  const content = {
-    title: "ArgentBank",
-  };
-
   return (
-    <section>
-      <div className="home">
-        <h1 className="home_title">{content.title}</h1>
-        <div></div>
-      </div>
-    </section>
+    <main>
+      <Hero />
+      <Features />
+    </main>
   );
 };
 
