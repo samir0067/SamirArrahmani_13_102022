@@ -1,0 +1,14 @@
+@use "../utils/variables";
+
+.signIn {
+  &_content {
+    box-sizing: border-box;
+    background-color: white;
+    width: 300px;
+    margin: 3rem auto 0 auto;
+    padding: 2rem;
+  }
+  &_icon {
+    font-size: 5rem;
+  }
+}
