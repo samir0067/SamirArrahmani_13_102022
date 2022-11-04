@@ -1,11 +1,3 @@
-.input-remember {
-  display: flex;
-}
-
-.input-remember label {
-  margin-left: 0.25rem;
-}
-
 .account {
   display: flex;
   justify-content: space-between;
