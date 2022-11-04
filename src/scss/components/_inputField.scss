@@ -14,22 +14,9 @@
   }
 }
 
-@media (min-width: 920px) {
-  .hero {
-    height: 400px;
-    background-position: 33%;
-    &_content {
-      position: absolute;
-      top: 50px;
-      right: 50px;
-      width: 300px;
-      margin: 2rem;
-      &_subtitle {
-        font-size: 1.5rem;
-      }
-      &_text {
-        font-size: 1.2rem;
-      }
-    }
+.input-remember {
+  display: flex;
+  & label {
+    margin-left: 0.25rem;
   }
 }
