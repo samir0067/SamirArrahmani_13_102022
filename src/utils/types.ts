@@ -1,35 +1,35 @@
-export type Error = {
+export type ErrorType = {
   type: string;
   message: string;
   status: string;
 };
 
-export type Auth = {
+export type AuthType = {
   token: string;
   isAuth: boolean;
 };
 
-export type SignIn = {
-  email: string;
-  password: string;
-};
-
-export type Profile = {
+export type UserType = {
   firstName: string;
   lastName: string;
   token: string;
 };
 
-export type Account = {
+export type AccountType = {
   accountId?: string;
-};
-
-export type User = {
-  email?: string;
-  password?: string;
-  firstName?: string;
-  lastName?: string;
-  createdAt?: Date;
-  updatedAt?: Date;
+  name?: string;
+  sold?: number;
+  status?: string;
   id?: string;
 };
+
+// TODO a fixer
+// export type ProfileType = {
+//   email?: string;
+//   password?: string;
+//   firstName?: string;
+//   lastName?: string;
+//   createdAt?: Date;
+//   updatedAt?: Date;
+//   id?: string;
+// };

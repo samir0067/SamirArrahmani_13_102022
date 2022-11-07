@@ -8,8 +8,9 @@ const SignIn: FC = () => {
   const [inputPassword, setInputPassword] = useState<string>("");
   const [inputRemember, setInputRemember] = useState<boolean>(false);
 
-  const handleSignIn = async (e: React.MouseEvent) => {
-    e.preventDefault();
+  const handleSignIn = async () => {
+    // TODO a fixer
+    console.log("handleSignIn =>");
   };
 
   return (

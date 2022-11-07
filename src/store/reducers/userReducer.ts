@@ -1,13 +1,13 @@
 import { createAction, createReducer, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "store/storeConfig";
-import { User } from "utils/types";
+import { UserType } from "utils/types";
 
-const user: User = {};
+const user: UserType = {} as UserType;
 
-export const setUser = createAction<User>("setUser");
+export const setUser = createAction<UserType>("setUser");
 
 const userReducer = createReducer(user, (builder) =>
-  builder.addCase(setUser, (state, action: PayloadAction<User>) => {
+  builder.addCase(setUser, (state, action: PayloadAction<UserType>) => {
     return action.payload;
   })
 );

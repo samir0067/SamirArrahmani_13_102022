@@ -5,8 +5,8 @@ import React, { FC } from "react";
  */
 type ButtonProps = {
   title: string;
-  onClick: (e: React.MouseEvent) => Promise<void>;
   style?: string;
+  onClick?: () => void;
 };
 
 /**

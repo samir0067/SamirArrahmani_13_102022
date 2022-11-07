@@ -1,21 +1,21 @@
 import React, { ChangeEventHandler, FC } from "react";
 
 type InputFieldProps = {
-  label: string;
   id: string;
   type: string;
+  label: string;
+  onChange: ChangeEventHandler<HTMLInputElement>;
   value?: string;
   checked?: boolean;
-  onChange: ChangeEventHandler<HTMLInputElement>;
 };
 
 const InputField: FC<InputFieldProps> = ({
-  label,
   id,
   type,
+  label,
+  onChange,
   value,
   checked,
-  onChange,
 }: InputFieldProps) => {
   return (
     <div className={type === "checkbox" ? "input-remember" : "input-wrapper"}>

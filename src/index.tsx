@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Routing from "navigation/Routing";
+import App from "App";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import storeConfig, { storePersist } from "store/storeConfig";
@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <Provider store={storeConfig}>
       <PersistGate loading={null} persistor={storePersist}>
         <BrowserRouter>
-          <Routing />
+          <App />
         </BrowserRouter>
       </PersistGate>
     </Provider>
