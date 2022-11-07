@@ -13,7 +13,7 @@ const SignIn: FC = () => {
   };
 
   return (
-    <div className="main bg-dark signIn">
+    <main className="bg-dark signIn">
       <section className="signIn_content">
         <FaUserCircle className="signIn_icon" />
         <h1>Sign In</h1>
@@ -42,7 +42,7 @@ const SignIn: FC = () => {
           <Button title="Sign In" onClick={handleSignIn} />
         </form>
       </section>
-    </div>
+    </main>
   );
 };
 

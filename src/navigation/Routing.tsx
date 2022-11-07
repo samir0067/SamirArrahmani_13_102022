@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import NotFound from "pages/NotFound";
 import Home from "pages/Home";
@@ -15,7 +15,7 @@ const Routing = () => {
   const location = useLocation();
 
   return (
-    <main>
+    <Fragment>
       <NavBar />
       <Routes key={location.pathname} location={location}>
         <Route path="/" element={<Home />} />
@@ -26,7 +26,7 @@ const Routing = () => {
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
-    </main>
+    </Fragment>
   );
 };
 

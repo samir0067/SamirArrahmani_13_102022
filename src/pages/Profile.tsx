@@ -6,12 +6,12 @@ const Profile: FC = () => {
   };
 
   return (
-    <section>
+    <main>
       <div className="profile">
         <h1 className="profile_title">{content.title}</h1>
         <div></div>
       </div>
-    </section>
+    </main>
   );
 };
 

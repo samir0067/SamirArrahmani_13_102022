@@ -1,7 +1,10 @@
 import React, { FC } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Button from "components/Button";
 
 const NotFound: FC = () => {
+  const navigate = useNavigate();
+
   const content = {
     title: "404",
     message: "Oups! La page que vous demandez n'existe pas.",
@@ -9,15 +12,17 @@ const NotFound: FC = () => {
   };
 
   return (
-    <section>
+    <main>
       <div className="notFound">
         <h1 className="notFound_title">{content.title}</h1>
         <p className="notFound_text">{content.message}</p>
-        <Link className="notFound_link" to="/">
-          {content.link}
-        </Link>
+        <Button
+          title={content.link}
+          onClick={async () => navigate("/")}
+          style="notFound_button"
+        />
       </div>
-    </section>
+    </main>
   );
 };
 
