@@ -13,8 +13,7 @@ const NavBar: FC = () => {
   const { isAuth } = useSelector(selectAuth);
   const user = useSelector(selectUser);
 
-  const handleSignOut = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
+  const handleSignOut = () => {
     dispatch(setAuth({ isAuth: false, token: "" }));
     localStorage.removeItem("token");
     navigate("/");
@@ -42,7 +41,7 @@ const NavBar: FC = () => {
               <FaUserCircle />
               {user.firstName}
             </NavLink>
-            <NavLink onClick={(e) => handleSignOut(e)} to={"/"}>
+            <NavLink onClick={() => handleSignOut()} to={"/"}>
               <RiLogoutBoxRLine />
               {content.signOut}
             </NavLink>

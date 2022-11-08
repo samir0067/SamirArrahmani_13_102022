@@ -1,13 +1,13 @@
 import { createAction, createReducer, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "store/storeConfig";
-import { Error } from "utils/types";
+import { ErrorType } from "utils/types";
 
-const error: Error = {} as Error;
+const error: ErrorType = {} as ErrorType;
 
-export const setError = createAction<Error>("setError");
+export const setError = createAction<ErrorType>("setError");
 
 const errorReducer = createReducer(error, (builder) =>
-  builder.addCase(setError, (state, action: PayloadAction<Error>) => {
+  builder.addCase(setError, (state, action: PayloadAction<ErrorType>) => {
     return action.payload;
   })
 );

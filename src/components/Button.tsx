@@ -5,28 +5,22 @@ import React, { FC } from "react";
  */
 type ButtonProps = {
   title: string;
-  onClick: () => void;
-  className?: string;
-  isLink?: boolean;
+  style?: string;
+  onClick?: () => void;
 };
 
 /**
- * Generic button used as a navigation link or button in the application
+ * Generic button used for form validation
  * @param { string } title button title
  * @param { function } onClick to call a function
- * @param { string } className customizable style if necessary
- * @param { boolean } isLink if true style link use
+ * @param { string } style to add custom style
  */
-const Button: FC<ButtonProps> = ({ title, onClick, className, isLink }: ButtonProps) => {
+const Button: FC<ButtonProps> = ({ title, onClick, style }: ButtonProps) => {
   return (
-    <button onClick={onClick} className={isLink ? `link ${className}` : "button"}>
+    <button onClick={onClick} className={`button ${style}`}>
       {title}
     </button>
   );
-};
-
-Button.defaultProps = {
-  isLink: false,
 };
 
 export default Button;

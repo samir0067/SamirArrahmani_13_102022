@@ -1,31 +1,33 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import NotFound from "pages/NotFound";
 import Home from "pages/Home";
 import NavBar from "layout/NavBar";
 import PrivateRoute from "navigation/PrivateRoute";
-import Profile from "pages/Profile";
+import User from "pages/User";
 import SignIn from "pages/SignIn";
+import Footer from "layout/Footer";
 
 /**
  * Navigation page with layout element
  */
-const Routing = () => {
+const App = () => {
   const location = useLocation();
 
   return (
-    <main>
+    <Fragment>
       <NavBar />
       <Routes key={location.pathname} location={location}>
         <Route path="/" element={<Home />} />
         <Route path="/sign-in" element={<SignIn />} />
-        <Route element={<PrivateRoute />}>
-          <Route path="/profile" element={<Profile />} />
-        </Route>
+        {/* TODO a fixer*/}
+        <Route path="/profile" element={<User />} />
+        <Route element={<PrivateRoute />}></Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </main>
+      <Footer />
+    </Fragment>
   );
 };
 
-export default Routing;
+export default App;

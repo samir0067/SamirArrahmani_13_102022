@@ -1,44 +1,55 @@
 // Utiles
 @use "utils/variables";
 
-// Components
-@use "components/button";
-
 // Layout
+@use "layout/footer";
 @use "layout/navBar";
 
-// Pages
-@use "pages/home";
-@use "pages/notFound";
+// Components
+@use "components/account";
+@use "components/button";
+@use "components/features";
+@use "components/formEditName";
+@use "components/hero";
+@use "components/inputField";
 
-html {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+// Pages
+@use "pages/notFound";
+@use "pages/signIn";
+@use "pages/user";
+
+#root {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  text-align: center;
+  color: variables.$darkBlue;
 }
 
-.main {
-  flex: 1;
+main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bg-dark {
+  background-color: variables.$darkViolet;
 }
 
 .sr-only {
   border: 0;
-  clip: rect(1px, 1px, 1px, 1px); /* 1 */
-  clip-path: inset(50%); /* 2 */
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
   height: 1px;
   margin: -1px;
   overflow: hidden;
   padding: 0;
   position: absolute;
   width: 1px;
-  white-space: nowrap; /* 3 */
+  white-space: nowrap;
 }

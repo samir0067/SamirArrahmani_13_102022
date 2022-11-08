@@ -1,0 +1,31 @@
+@use "../utils/variables";
+
+.user {
+  &_header {
+    &_edit {
+      margin-top: 10px;
+      &_wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+
+        .input-wrapper {
+          max-width: 200px;
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    &_button {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      padding: 10px;
+      gap: 20px;
+      .button {
+        max-width: 150px;
+      }
+    }
+  }
+}

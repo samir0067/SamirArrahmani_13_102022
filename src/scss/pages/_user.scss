@@ -1,0 +1,17 @@
+@use "../utils/variables";
+
+.user {
+  &_header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: variables.$white;
+    margin-bottom: 2rem;
+    h1 {
+      font-size: 2rem;
+      line-height: normal;
+      margin-bottom: 0;
+    }
+  }
+}

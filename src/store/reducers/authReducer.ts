@@ -1,13 +1,13 @@
 import { createAction, createReducer, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "store/storeConfig";
-import { Auth } from "utils/types";
+import { AuthType } from "utils/types";
 
-const auth: Auth = { token: "", isAuth: false };
+const auth: AuthType = { token: "", isAuth: false };
 
-export const setAuth = createAction<Auth>("setAuth");
+export const setAuth = createAction<AuthType>("setAuth");
 
 const authReducer = createReducer(auth, (builder) =>
-  builder.addCase(setAuth, (state, action: PayloadAction<Auth>) => {
+  builder.addCase(setAuth, (state, action: PayloadAction<AuthType>) => {
     return action.payload;
   })
 );

@@ -1,13 +1,13 @@
 import { createAction, createReducer, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "store/storeConfig";
-import { Account } from "utils/types";
+import { AccountType } from "utils/types";
 
-const account: Account = {} as Account;
+const account: AccountType = {} as AccountType;
 
-export const setAccount = createAction<Account>("setAccount");
+export const setAccount = createAction<AccountType>("setAccount");
 
 const accountReducer = createReducer(account, (builder) =>
-  builder.addCase(setAccount, (state, action: PayloadAction<Account>) => {
+  builder.addCase(setAccount, (state, action: PayloadAction<AccountType>) => {
     return action.payload;
   })
 );
