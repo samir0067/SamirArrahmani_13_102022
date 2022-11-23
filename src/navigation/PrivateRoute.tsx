@@ -1,10 +1,10 @@
 import React, { Fragment } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectAuth } from "store/reducers/authReducer";
+import { selectSignIn } from "store/reducers/signInReducer";
 
 const PrivateRoute = () => {
-  const { isAuth } = useSelector(selectAuth);
+  const { isAuth } = useSelector(selectSignIn);
   return (
     <Fragment>{isAuth ? <Outlet /> : <Navigate to="/sign-in" />}</Fragment>
   );
