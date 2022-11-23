@@ -1,12 +1,8 @@
 import { combineReducers } from "redux";
-import error from "store/reducers/errorReducer";
-import auth from "store/reducers/authReducer";
+import signIn from "store/reducers/signInReducer";
 import account from "store/reducers/accountReducer";
-import user from "store/reducers/userReducer";
 
 export const rootReducer = combineReducers({
-  error,
-  auth,
+  signIn,
   account,
-  user,
 });
