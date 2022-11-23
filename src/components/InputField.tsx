@@ -1,35 +1,39 @@
-import React, { ChangeEventHandler, FC } from "react";
+import React, { FC } from "react";
+import {
+  FieldErrors,
+  FieldName,
+  FieldValues,
+  UseFormRegisterReturn,
+} from "react-hook-form";
 
 type InputFieldProps = {
   id: string;
   type: string;
   label: string;
-  onChange: ChangeEventHandler<HTMLInputElement>;
-  value?: string;
-  checked?: boolean;
+  register: UseFormRegisterReturn<FieldName<FieldValues>>;
+  error: FieldErrors;
+  defaultValue?: string;
 };
 
 const InputField: FC<InputFieldProps> = ({
   id,
   type,
   label,
-  onChange,
-  value,
-  checked,
+  error,
+  register,
+  defaultValue,
 }: InputFieldProps) => {
   return (
-    <div className={type === "checkbox" ? "input-remember" : "input-wrapper"}>
-      {type !== "checkbox" && <label htmlFor={id}>{label}</label>}
-      <input
-        id={id}
-        type={type}
-        value={value}
-        onChange={onChange}
-        checked={checked}
-      />
-      {type === "checkbox" && <label htmlFor={id}>{label}</label>}
+    <div className="inputWrapper">
+      <label>{label}</label>
+      <input id={id} type={type} {...register} defaultValue={defaultValue} />
+      {error[id] && <span>{error[id]?.message as never}</span>}
     </div>
   );
+};
+
+InputField.defaultProps = {
+  defaultValue: "",
 };
 
 export default InputField;
