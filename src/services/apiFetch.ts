@@ -20,13 +20,26 @@ const getUserProfile = async (token?: string) => {
       }
     )
     .then((response: AxiosResponse) => {
+      console.log("getUserProfile ==> ", response.data);
       return response.data.body;
+    });
+};
+
+const updateUserProfile = async (request: SignInType) => {
+  return axios
+    .put(`http://localhost:3001/api/v1/user/profile`, request, {
+      headers: { Authorization: `Bearer ${request.token}` },
+    })
+    .then((response: AxiosResponse) => {
+      console.log("updateUserProfile ==> ", response.data);
+      return response.data;
     });
 };
 
 const apiFetch = {
   fetchSignIn,
   getUserProfile,
+  updateUserProfile,
 };
 
 export default apiFetch;
