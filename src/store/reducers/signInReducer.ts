@@ -6,14 +6,13 @@ const signIn: SignInType = {
   isAuth: false,
   token: undefined,
   email: undefined,
-  password: undefined,
   firstName: undefined,
   lastName: undefined,
   rememberMe: false,
 };
 
 export const signInAuth = createAction<SignInType>("signInAuth");
-export const signInUser = createAction<SignInType>("signInUser");
+export const updateSignInUser = createAction<SignInType>("updateSignInUser");
 export const signOut = createAction<SignInType>("signOut");
 
 const signInReducer = createReducer(signIn, (builder) =>
@@ -32,7 +31,7 @@ const signInReducer = createReducer(signIn, (builder) =>
         rememberMe: action.payload.rememberMe,
       };
     })
-    .addCase(signInUser, (state, action: PayloadAction<SignInType>) => {
+    .addCase(updateSignInUser, (state, action: PayloadAction<SignInType>) => {
       return {
         ...state,
         firstName: action.payload.firstName,
