@@ -1,17 +1,51 @@
 import React, { FC, useState } from "react";
+import { useDispatch } from "react-redux";
 import Button from "components/Button";
+import { signInAuth } from "store/reducers/signInReducer";
 import { FaUserCircle } from "react-icons/fa";
 import InputField from "components/InputField";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { signInSchema } from "utils/validation";
+import apiFetch from "services/apiFetch";
+import { SignInType } from "utils/types";
+import { useNavigate } from "react-router-dom";
 
 const SignIn: FC = () => {
-  const [inputEmail, setInputEmail] = useState<string>("");
-  const [inputPassword, setInputPassword] = useState<string>("");
-  const [inputRemember, setInputRemember] = useState<boolean>(false);
+  document.title = "Argent Bank - Sign in Page";
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const emailStorage = localStorage.getItem("email");
+  const rememberStorage = localStorage.getItem("rememberMe");
+  const [inputRemember, setInputRemember] = useState<boolean>(
+    rememberStorage ? Boolean(rememberStorage) : false
+  );
 
-  const handleSignIn = async () => {
-    // TODO a fixer
-    console.log("handleSignIn =>");
+  const handleSignIn = async (data: SignInType) => {
+    const responseApi = await apiFetch.fetchSignIn({
+      email: data.email,
+      password: data.password,
+    });
+    // console.log("responseApi signIn ===", responseApi);
+    if (responseApi) {
+      dispatch(
+        signInAuth({
+          token: responseApi,
+          email: data.email,
+          rememberMe: inputRemember,
+        })
+      );
+      navigate("/profile");
+    }
   };
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignInType>({
+    resolver: yupResolver(signInSchema),
+  });
 
   return (
     <main className="bg-dark signIn">
@@ -20,27 +54,28 @@ const SignIn: FC = () => {
         <h1>Sign In</h1>
         <form>
           <InputField
-            label="Username"
-            id="username"
+            error={errors}
+            register={register("email")}
+            label="Email"
+            id="email"
             type="text"
-            value={inputEmail}
-            onChange={(e) => setInputEmail(e.currentTarget.value)}
+            defaultValue={emailStorage ? emailStorage : ""}
           />
           <InputField
+            error={errors}
+            register={register("password")}
             label="Password"
             id="password"
             type="password"
-            value={inputPassword}
-            onChange={(e) => setInputPassword(e.currentTarget.value)}
           />
-          <InputField
-            label="Remember me"
+          <input
             id="remember-me"
             type="checkbox"
-            checked={inputRemember}
             onChange={() => setInputRemember(!inputRemember)}
+            checked={inputRemember}
           />
-          <Button title="Sign In" onClick={handleSignIn} />
+          <label htmlFor="remember-me">{"Remember me"}</label>
+          <Button title="Sign In" onClick={handleSubmit(handleSignIn)} />
         </form>
       </section>
     </main>
