@@ -12,6 +12,7 @@ const signIn: SignInType = {
 };
 
 export const signInAuth = createAction<SignInType>("signInAuth");
+export const getSignInUser = createAction<SignInType>("getSignInUser");
 export const updateSignInUser = createAction<SignInType>("updateSignInUser");
 export const signOut = createAction<SignInType>("signOut");
 
@@ -29,6 +30,13 @@ const signInReducer = createReducer(signIn, (builder) =>
         token: action.payload.token,
         email: action.payload.email,
         rememberMe: action.payload.rememberMe,
+      };
+    })
+    .addCase(getSignInUser, (state, action: PayloadAction<SignInType>) => {
+      return {
+        ...state,
+        firstName: action.payload.firstName,
+        lastName: action.payload.lastName,
       };
     })
     .addCase(updateSignInUser, (state, action: PayloadAction<SignInType>) => {
