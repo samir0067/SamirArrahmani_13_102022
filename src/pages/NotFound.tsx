@@ -2,13 +2,16 @@ import React, { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "components/Button";
 
+/**
+ * functional component for the page note found
+ */
 const NotFound: FC = () => {
   const navigate = useNavigate();
 
   const content = {
     title: "404",
-    message: "Oups! La page que vous demandez n'existe pas.",
-    link: "Retourner sur la page d’accueil",
+    message: "Oops! the page you asked for does not exist.",
+    link: "Return to the home page",
   };
 
   return (

@@ -1,5 +1,8 @@
 import React, { FC } from "react";
 
+/**
+ * static component to display information
+ */
 const Hero: FC = () => {
   return (
     <div className="hero">

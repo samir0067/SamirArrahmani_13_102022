@@ -1,25 +1,27 @@
 import React, { FC } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { selectAuth, setAuth } from "store/reducers/authReducer";
+import { selectSignIn, signOut } from "store/reducers/signInReducer";
 import argentBankLogo from "../assets/argentBankLogo.png";
-import { selectUser } from "store/reducers/userReducer";
 import { FaUserCircle } from "react-icons/fa";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 
+/**
+ * navigation component of the application
+ */
 const NavBar: FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isAuth } = useSelector(selectAuth);
-  const user = useSelector(selectUser);
+  const { isAuth, firstName } = useSelector(selectSignIn);
 
   const handleSignOut = () => {
-    dispatch(setAuth({ isAuth: false, token: "" }));
-    localStorage.removeItem("token");
+    dispatch(signOut({}));
+    localStorage.clear();
     navigate("/");
   };
 
   const content = {
+    onlyTitle: "Argent Bank",
     login: "Sign In",
     signOut: "Sign Out",
   };
@@ -33,22 +35,22 @@ const NavBar: FC = () => {
             src={argentBankLogo}
             alt="Argent Bank Logo"
           />
-          <h1 className="sr-only">Argent Bank</h1>
+          <h1 className="sr-only">{content.onlyTitle}</h1>
         </NavLink>
         {isAuth ? (
           <div className="nav_item">
-            <NavLink to={"profile"}>
+            <NavLink to="profile">
               <FaUserCircle />
-              {user.firstName}
+              {firstName}
             </NavLink>
-            <NavLink onClick={() => handleSignOut()} to={"/"}>
+            <NavLink onClick={handleSignOut} to="/">
               <RiLogoutBoxRLine />
               {content.signOut}
             </NavLink>
           </div>
         ) : (
           <div className="nav_item">
-            <NavLink to={"sign-in"}>
+            <NavLink to="sign-in">
               <FaUserCircle />
               {content.login}
             </NavLink>

@@ -1,18 +1,42 @@
-import React, { FC, useState } from "react";
-import { useSelector } from "react-redux";
-import { selectUser } from "store/reducers/userReducer";
-// import { selectAccount } from "store/reducers/accountReducer";
-// import { selectError } from "store/reducers/errorReducer";
+import React, { FC, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getSignInUser, selectSignIn } from "store/reducers/signInReducer";
 import Button from "components/Button";
 import Account from "components/Account";
 import FormEditName from "components/FormEditName";
+import apiCall from "services/apiCall";
 
+/**
+ * functional component for the user page
+ */
 const User: FC = () => {
-  // TODO a fixer
-  // const account = useSelector(selectAccount);
-  // const errorMessage = useSelector(selectError);
-  const user = useSelector(selectUser);
+  document.title = "Argent Bank - User Page";
+  const dispatch = useDispatch();
+  const signIn = useSelector(selectSignIn);
   const [editName, setEditName] = useState<boolean>(false);
+
+  /**
+   *  Get to the user's profile
+   */
+  const handleGetUserProfile = async () => {
+    const responseApi = await apiCall.getUserProfile(signIn.token);
+    if (responseApi) {
+      dispatch(
+        getSignInUser({
+          firstName: responseApi.firstName,
+          lastName: responseApi.lastName,
+        })
+      );
+    }
+  };
+
+  useEffect(() => {
+    handleGetUserProfile().then();
+  }, []);
+
+  const handleEditUser = () => {
+    setEditName(!editName);
+  };
 
   return (
     <main className="bg-dark user">
@@ -24,11 +48,11 @@ const User: FC = () => {
           <FormEditName editName={editName} setEditName={setEditName} />
         ) : (
           <>
-            {user?.firstName} {user?.lastName}!
+            {signIn?.firstName} {signIn?.lastName} !
             <div className="user_header_button">
               <Button
                 title="Edit Name"
-                onClick={() => undefined}
+                onClick={handleEditUser}
                 style="user_header_button"
               />
             </div>
