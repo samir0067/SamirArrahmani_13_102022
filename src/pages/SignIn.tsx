@@ -7,10 +7,13 @@ import InputField from "components/InputField";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signInSchema } from "utils/validation";
-import apiFetch from "services/apiFetch";
+import apiCall from "services/apiCall";
 import { SignInType } from "utils/types";
 import { useNavigate } from "react-router-dom";
 
+/**
+ * functional component for the login page
+ */
 const SignIn: FC = () => {
   document.title = "Argent Bank - Sign in Page";
   const dispatch = useDispatch();
@@ -21,8 +24,12 @@ const SignIn: FC = () => {
     rememberStorage ? Boolean(rememberStorage) : false
   );
 
+  /**
+   * To retrieve data from the API based on the form data
+   * @param { SignInType } data
+   */
   const handleSignIn = async (data: SignInType) => {
-    const responseApi = await apiFetch.fetchSignIn({
+    const responseApi = await apiCall.fetchSignIn({
       email: data.email,
       password: data.password,
     });

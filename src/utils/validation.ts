@@ -6,6 +6,9 @@ export const errorsMessage = {
   minPassword: "Field must be at least 6 characters",
 };
 
+/**
+ * function to define the validation rules of the fields
+ */
 export const signInSchema = object().shape({
   email: string().required(errorsMessage.requiredMsg).trim(),
   password: string()

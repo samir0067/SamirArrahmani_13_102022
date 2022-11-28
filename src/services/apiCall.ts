@@ -1,6 +1,10 @@
 import axios, { AxiosResponse } from "axios";
 import { SignInType } from "utils/types";
 
+/**
+ * Fetch the login user
+ * @param { SignInType } request
+ */
 const fetchSignIn = async (request: SignInType) => {
   return axios
     .post(`http://localhost:3001/api/v1/user/login`, request)
@@ -10,6 +14,10 @@ const fetchSignIn = async (request: SignInType) => {
     });
 };
 
+/**
+ * Get the profile by token
+ * @param { string } token token identification
+ */
 const getUserProfile = async (token?: string) => {
   return axios
     .post(
@@ -25,6 +33,10 @@ const getUserProfile = async (token?: string) => {
     });
 };
 
+/**
+ * Update the user's profile
+ * @param { SignInType } request
+ */
 const updateUserProfile = async (request: SignInType) => {
   return axios
     .put(`http://localhost:3001/api/v1/user/profile`, request, {
@@ -36,10 +48,13 @@ const updateUserProfile = async (request: SignInType) => {
     });
 };
 
-const apiFetch = {
+/**
+ * Send the call function to the API
+ */
+const apiCall = {
   fetchSignIn,
   getUserProfile,
   updateUserProfile,
 };
 
-export default apiFetch;
+export default apiCall;

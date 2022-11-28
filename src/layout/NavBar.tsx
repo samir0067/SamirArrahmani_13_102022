@@ -6,6 +6,9 @@ import argentBankLogo from "../assets/argentBankLogo.png";
 import { FaUserCircle } from "react-icons/fa";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 
+/**
+ * navigation component of the application
+ */
 const NavBar: FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();

@@ -7,6 +7,9 @@ import storeConfig from "store/storeConfig";
 import "normalize.css";
 import "index.css";
 
+/**
+ * root of the application
+ */
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <Provider store={storeConfig}>

@@ -3,6 +3,9 @@ import { Navigate, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectSignIn } from "store/reducers/signInReducer";
 
+/**
+ * redirection components for private routes if not authenticated
+ */
 const PrivateRoute = () => {
   const { isAuth } = useSelector(selectSignIn);
   return (

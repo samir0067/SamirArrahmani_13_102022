@@ -9,7 +9,7 @@ import SignIn from "pages/SignIn";
 import Footer from "layout/Footer";
 
 /**
- * Navigation page with layout element
+ * functional component for page navigation and layout elements
  */
 const App: FC = () => {
   const location = useLocation();

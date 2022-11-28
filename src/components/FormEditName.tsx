@@ -7,19 +7,27 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { profileSchema } from "utils/validation";
 import { SignInType } from "utils/types";
-import apiFetch from "services/apiFetch";
+import apiCall from "services/apiCall";
 
+/**
+ * type of edit form
+ */
 type FormEditProps = {
   editName: boolean;
   setEditName: (b: boolean) => void;
 };
 
+/**
+ * Form to change the name of the profile
+ * @param { boolean } editName it changes the name
+ * @param { function } setEditName define if it changes the name
+ */
 const FormEditName: FC<FormEditProps> = ({ editName, setEditName }) => {
   const dispatch = useDispatch();
   const signIn = useSelector(selectSignIn);
 
   const handleUpdateSignInUser = async (data: SignInType) => {
-    const responseApi = await apiFetch.updateUserProfile({
+    const responseApi = await apiCall.updateUserProfile({
       firstName: data.firstName,
       lastName: data.lastName,
       token: signIn.token,

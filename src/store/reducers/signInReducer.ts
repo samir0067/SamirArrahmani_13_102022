@@ -2,6 +2,9 @@ import { createAction, createReducer, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "store/storeConfig";
 import { SignInType } from "utils/types";
 
+/**
+ * The initial state of the reducer is passed as first argument
+ */
 const signIn: SignInType = {
   isAuth: false,
   token: undefined,
@@ -11,11 +14,17 @@ const signIn: SignInType = {
   rememberMe: false,
 };
 
+/**
+ * A function utility to create actions for the given type
+ */
 export const signInAuth = createAction<SignInType>("signInAuth");
 export const getSignInUser = createAction<SignInType>("getSignInUser");
 export const updateSignInUser = createAction<SignInType>("updateSignInUser");
 export const signOut = createAction<SignInType>("signOut");
 
+/**
+ *  A function to define a reducer as a response between a type of action
+ */
 const signInReducer = createReducer(signIn, (builder) =>
   builder
     .addCase(signInAuth, (state, action: PayloadAction<SignInType>) => {

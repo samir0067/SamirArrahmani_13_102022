@@ -6,6 +6,9 @@ import {
   UseFormRegisterReturn,
 } from "react-hook-form";
 
+/**
+ * type of input field
+ */
 type InputFieldProps = {
   id: string;
   type: string;
@@ -15,6 +18,15 @@ type InputFieldProps = {
   defaultValue?: string;
 };
 
+/**
+ * Generic input fields
+ * @param { string } id identify field
+ * @param { string } type type field
+ * @param { string } label field title
+ * @param { string } error listen for errors on the input field
+ * @param { string } register Register field into hook form
+ * @param { string } defaultValue Default value of field
+ */
 const InputField: FC<InputFieldProps> = ({
   id,
   type,

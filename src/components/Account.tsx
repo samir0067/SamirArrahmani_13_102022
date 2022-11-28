@@ -8,6 +8,13 @@ type AccountProps = {
   titleButton?: string;
 };
 
+/**
+ * A component that can be reused to display account information.
+ * @param { string } title account title
+ * @param { string } amount money in account
+ * @param { string } description account description
+ * @param { string } titleButton redirection button to view transactions
+ */
 const Account: FC<AccountProps> = ({
   title,
   amount,

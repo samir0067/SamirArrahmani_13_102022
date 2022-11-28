@@ -1,5 +1,8 @@
 import React, { FC } from "react";
 
+/**
+ * footer component of the application
+ */
 const Footer: FC = () => {
   return (
     <footer className="footer">

@@ -4,16 +4,22 @@ import { getSignInUser, selectSignIn } from "store/reducers/signInReducer";
 import Button from "components/Button";
 import Account from "components/Account";
 import FormEditName from "components/FormEditName";
-import apiFetch from "services/apiFetch";
+import apiCall from "services/apiCall";
 
+/**
+ * functional component for the user page
+ */
 const User: FC = () => {
   document.title = "Argent Bank - User Page";
   const dispatch = useDispatch();
   const signIn = useSelector(selectSignIn);
   const [editName, setEditName] = useState<boolean>(false);
 
+  /**
+   *  Get to the user's profile
+   */
   const handleGetUserProfile = async () => {
-    const responseApi = await apiFetch.getUserProfile(signIn.token);
+    const responseApi = await apiCall.getUserProfile(signIn.token);
     if (responseApi) {
       dispatch(
         getSignInUser({

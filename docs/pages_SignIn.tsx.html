@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Home</title>
+  <title> pages/SignIn.tsx</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -77,62 +79,111 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p></p>
-                    <h1>Home</h1>
+                    <p>Source</p>
+                    <h1>pages/SignIn.tsx</h1>
                 </header>
                 
 
 
 
     
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
     <section>
-        <article><h1>Getting Started with Create React App</h1>
-<p>This project was bootstrapped with <a href="https://github.com/facebook/create-react-app">Create React App</a>.</p>
-<h2>Available Scripts</h2>
-<p>In the project directory, you can run:</p>
-<h3><code>yarn start</code></h3>
-<p>Runs the app in the development mode.<br>
-Open <a href="http://localhost:3000">http://localhost:3000</a> to view it in the browser.</p>
-<p>The page will reload if you make edits.<br>
-You will also see any lint errors in the console.</p>
-<h3><code>yarn test</code></h3>
-<p>Launches the test runner in the interactive watch mode.<br>
-See the section about <a href="https://facebook.github.io/create-react-app/docs/running-tests">running tests</a> for more information.</p>
-<h3><code>yarn build</code></h3>
-<p>Builds the app for production to the <code>build</code> folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.</p>
-<p>The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!</p>
-<p>See the section about <a href="https://facebook.github.io/create-react-app/docs/deployment">deployment</a> for more information.</p>
-<h3><code>yarn eject</code></h3>
-<p><strong>Note: this is a one-way operation. Once you <code>eject</code>, you can’t go back!</strong></p>
-<p>If you aren’t satisfied with the build tool and configuration choices, you can <code>eject</code> at any time. This command will remove the single build dependency from your project.</p>
-<p>Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except <code>eject</code> will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.</p>
-<p>You don’t have to ever use <code>eject</code>. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.</p>
-<h2>Learn More</h2>
-<p>You can learn more in the <a href="https://facebook.github.io/create-react-app/docs/getting-started">Create React App documentation</a>.</p>
-<p>To learn React, check out the <a href="https://reactjs.org/">React documentation</a>.</p></article>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { FC, useState } from "react";
+import { useDispatch } from "react-redux";
+import Button from "components/Button";
+import { signInAuth } from "store/reducers/signInReducer";
+import { FaUserCircle } from "react-icons/fa";
+import InputField from "components/InputField";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { signInSchema } from "utils/validation";
+import apiCall from "services/apiCall";
+import { SignInType } from "utils/types";
+import { useNavigate } from "react-router-dom";
+
+/**
+ * functional component for the login page
+ */
+const SignIn: FC = () => {
+  document.title = "Argent Bank - Sign in Page";
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const emailStorage = localStorage.getItem("email");
+  const rememberStorage = localStorage.getItem("rememberMe");
+  const [inputRemember, setInputRemember] = useState&lt;boolean>(
+    rememberStorage ? Boolean(rememberStorage) : false
+  );
+
+  /**
+   * To retrieve data from the API based on the form data
+   * @param { SignInType } data
+   */
+  const handleSignIn = async (data: SignInType) => {
+    const responseApi = await apiCall.fetchSignIn({
+      email: data.email,
+      password: data.password,
+    });
+    // console.log("responseApi signIn ===", responseApi);
+    if (responseApi) {
+      dispatch(
+        signInAuth({
+          token: responseApi,
+          email: data.email,
+          rememberMe: inputRemember,
+        })
+      );
+      navigate("/profile");
+    }
+  };
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm&lt;SignInType>({
+    resolver: yupResolver(signInSchema),
+  });
+
+  return (
+    &lt;main className="bg-dark signIn">
+      &lt;section className="signIn_content">
+        &lt;FaUserCircle className="signIn_icon" />
+        &lt;h1>Sign In&lt;/h1>
+        &lt;form>
+          &lt;InputField
+            error={errors}
+            register={register("email")}
+            label="Email"
+            id="email"
+            type="text"
+            defaultValue={emailStorage ? emailStorage : ""}
+          />
+          &lt;InputField
+            error={errors}
+            register={register("password")}
+            label="Password"
+            id="password"
+            type="password"
+          />
+          &lt;input
+            id="remember-me"
+            type="checkbox"
+            onChange={() => setInputRemember(!inputRemember)}
+            checked={inputRemember}
+          />
+          &lt;label htmlFor="remember-me">{"Remember me"}&lt;/label>
+          &lt;Button title="Sign In" onClick={handleSubmit(handleSignIn)} />
+        &lt;/form>
+      &lt;/section>
+    &lt;/main>
+  );
+};
+
+export default SignIn;
+</code></pre>
+        </article>
     </section>
-
-
 
 
 
