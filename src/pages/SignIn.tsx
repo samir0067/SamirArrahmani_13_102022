@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, {FC, useEffect, useState} from "react";
 import { useDispatch } from "react-redux";
 import Button from "components/Button";
 import { signInAuth } from "store/reducers/signInReducer";
@@ -24,6 +24,20 @@ const SignIn: FC = () => {
     rememberStorage ? Boolean(rememberStorage) : false
   );
 
+  useEffect(() => {
+    if (localStorage.getItem("token") !== null) {
+      dispatch(
+          signInAuth({
+            token: String(localStorage.getItem("token")),
+            email: String(localStorage.getItem("email")),
+            rememberMe: !!localStorage.getItem("rememberMe"),
+          })
+      );
+      navigate("/profile");
+    }
+  }, [] )
+
+
   /**
    * To retrieve data from the API based on the form data
    * @param { SignInType } data
@@ -33,7 +47,6 @@ const SignIn: FC = () => {
       email: data.email,
       password: data.password,
     });
-    // console.log("responseApi signIn ===", responseApi);
     if (responseApi) {
       dispatch(
         signInAuth({

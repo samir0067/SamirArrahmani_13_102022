@@ -10,7 +10,7 @@ schemes:
   - http
   - https
 paths:
-  /user/profile/transactions?page=1&limit=5:
+  /user/transactions?page=1&limit=5:
     get:
       security:
         - Bearer: [ ]
@@ -49,7 +49,7 @@ paths:
           description: Transaction Not Found
         '500':
           description: Internal Server Error
-  /user/profile/transaction/add:
+  /user/transaction/add:
     post:
       security:
         - Bearer: [ ]
@@ -84,7 +84,7 @@ paths:
           description: Transaction Not Found
         '500':
           description: Internal Server Error
-  /user/profile/transaction/{id}:
+  /user/transaction/{id}:
     get:
       security:
         - Bearer: [ ]
