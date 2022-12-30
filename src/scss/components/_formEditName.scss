@@ -4,6 +4,7 @@
   &_header {
     &_edit {
       margin-top: 10px;
+
       &_wrapper {
         display: flex;
         justify-content: center;
@@ -23,9 +24,24 @@
       justify-content: center;
       padding: 10px;
       gap: 20px;
+
       .button {
         max-width: 150px;
       }
     }
   }
+}
+
+@media (max-width: 720px) {
+  .user_header {
+      &_edit {
+        &_wrapper {
+          flex-direction: column;
+        }
+      }
+
+      &_button {
+        flex-direction: column;
+      }
+    }
 }
