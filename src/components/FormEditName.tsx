@@ -32,7 +32,6 @@ const FormEditName: FC<FormEditProps> = ({ editName, setEditName }) => {
       lastName: data.lastName,
       token: signIn.token,
     });
-    console.log("responseApi updateSignInUser ===", responseApi);
     if (responseApi) {
       dispatch(
         updateSignInUser({

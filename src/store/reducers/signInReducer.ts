@@ -33,7 +33,6 @@ const signInReducer = createReducer(signIn, (builder) =>
         localStorage.setItem("rememberMe", String(action.payload.rememberMe));
         localStorage.setItem("token", String(action.payload.token))
       }
-      console.log("return signIn state ", state);
       return {
         ...state,
         isAuth: true,
